@@ -1,0 +1,63 @@
+name: D1 Backup
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # هر ۶ ساعت؛ برای هر ساعت: "0 * * * *"
+  workflow_dispatch:         # اجرای دستی از تب Actions
+    inputs:
+      force:
+        description: "ذخیره حتی اگه تعداد آیتم‌ها خیلی کم شده (مثلاً بعد از حذف عمدی)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: d1-backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download JSON
+        env:
+          SITE_URL: https://aniuploader.pages.dev
+        run: |
+          curl --fail --silent --show-error --retry 3 "$SITE_URL/api/admin/list" -o /tmp/list.json
+          # باید یه آرایه‌ی JSON باشه
+          jq -e 'type == "array"' /tmp/list.json > /dev/null
+          jq . /tmp/list.json > /tmp/new.json
+
+      - name: Safety check
+        env:
+          FORCE: ${{ inputs.force }}
+        run: |
+          NEW=$(jq length /tmp/new.json)
+          OLD=0
+          [ -f backup/list.json ] && OLD=$(jq length backup/list.json)
+          echo "old: $OLD  new: $NEW"
+          if [ "$FORCE" != "true" ] && [ "$OLD" -gt 0 ]; then
+            # خالی شده یا بیشتر از نصف کم شده ⇒ مشکوکه، بکاپ قبلی رو نگه دار
+            if [ "$NEW" -eq 0 ] || [ $((NEW * 2)) -lt "$OLD" ]; then
+              echo "::error::تعداد آیتم‌ها از $OLD به $NEW رسیده؛ برای محافظت از بکاپ قبلی ذخیره نشد."
+              exit 1
+            fi
+          fi
+
+      - name: Save and commit if changed
+        run: |
+          mkdir -p backup
+          cp /tmp/new.json backup/list.json
+          git config user.name "d1-backup[bot]"
+          git config user.email "actions@users.noreply.github.com"
+          git add backup/
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "D1 backup $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
