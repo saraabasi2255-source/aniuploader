@@ -5,7 +5,7 @@ pages_build_output_dir = "public"
 [[d1_databases]]
 binding = "DB"
 database_name = "anime_db"
-database_id = ""
+database_id = "20a2e830-aee8-41e1-8004-410d7d2afd68"
 
 # متغیرها رو از داشبورد Cloudflare (Settings → Variables and Secrets) ست کن:
 #   BOT_TOKEN          توکن بات (Secret)
