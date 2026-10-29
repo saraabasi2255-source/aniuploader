@@ -1,0 +1,211 @@
+:root {
+  --bg: #0f1115;
+  --text: #f2f2f2;
+  --hint: #8a8f98;
+  --link: #6ab3f3;
+  --card: #171a21;
+  --accent: #e0a458;
+  --red: #dc2626;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Vazirmatn", -apple-system, sans-serif;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.app-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 4px 0 2px;
+}
+
+.subtitle {
+  color: var(--hint);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* نوار جستجو و فیلترها */
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.filters input,
+.filters select {
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(138, 143, 152, 0.25);
+  background: var(--card);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.filters input:focus,
+.filters select:focus {
+  border-color: var(--accent);
+}
+
+#q { flex: 1; min-width: 160px; }
+
+.filters button {
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: none;
+  background: var(--link);
+  color: #0f1115;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.08s ease, opacity 0.15s ease;
+}
+
+.filters button:active {
+  transform: scale(0.96);
+  opacity: 0.85;
+}
+
+/* کارت‌های انیمه */
+.results {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+}
+
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 14px;
+  border: 1px solid rgba(138, 143, 152, 0.12);
+}
+
+.card h3 {
+  margin: 0 0 4px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.mut {
+  color: var(--hint);
+  font-size: 13px;
+}
+
+/* برچسب قسمت‌های ناقص */
+.miss {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.miss span {
+  background: rgba(220, 38, 38, 0.15);
+  color: var(--red);
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ردیف هر قسمت */
+.ep {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  border-top: 1px solid rgba(138, 143, 152, 0.15);
+}
+
+.ep b {
+  min-width: 70px;
+  font-size: 14px;
+}
+
+.ep .btns {
+  margin-right: auto;
+  display: flex;
+  gap: 6px;
+}
+
+.ep button,
+.ep a {
+  padding: 7px 12px;
+  font-size: 12px;
+  font-family: inherit;
+  border-radius: 10px;
+  border: 1px solid rgba(138, 143, 152, 0.25);
+  background: transparent;
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.08s ease, background 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ep button:active,
+.ep a:active {
+  transform: scale(0.94);
+}
+
+.ep a.go {
+  background: rgba(106, 179, 243, 0.15);
+  color: var(--link);
+  border-color: rgba(106, 179, 243, 0.3);
+}
+
+.ep a.go:active {
+  background: rgba(106, 179, 243, 0.3);
+}
+
+/* پیام خالی بودن */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--hint);
+  font-size: 14px;
+  padding: 60px 10px;
+}
+
+/* توست */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 99px;
+  font-size: 13px;
+  display: none;
+  z-index: 100;
+}
+
+@media (max-width: 420px) {
+  .results { grid-template-columns: 1fr; }
+}

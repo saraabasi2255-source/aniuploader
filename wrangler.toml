@@ -1,0 +1,23 @@
+name = "anime-archive-bot"
+compatibility_date = "2024-09-01"
+pages_build_output_dir = "public"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "anime_db"
+database_id = ""
+
+# متغیرها رو از داشبورد Cloudflare (Settings → Variables and Secrets) ست کن:
+#   BOT_TOKEN          توکن بات (Secret)
+#   WEBHOOK_SECRET     رمز وبهوک + کلید پنل ادمین و cron (Secret)
+#   ARCHIVE_CHAT_ID    آیدی عددی چنل آرشیو (مثل -100123456789)
+#   BOT_USERNAME       یوزرنیم بات بدون @ (برای ساختن لینک‌های ?start=p_<id>)
+#   REQUIRED_CHANNEL_ID  (اختیاری) چنل جوین اجباری: @username یا آیدی عددی
+#                        (FORCE_JOIN_CHANNEL قدیمی هم هنوز کار می‌کنه)
+#   REQUIRED_CHANNEL_URL (اختیاری) لینک دکمه‌ی عضویت؛ اگه آیدی عددی دادی لازمه
+#   DELETE_AFTER       (اختیاری) ثانیه تا حذف فایل برای کاربر، پیش‌فرض ۳۰
+#   CHANNEL_USERNAME   (اختیاری) اگه چنل آرشیو عمومیه، یوزرنیمش بدون @
+#
+# پاک شدن فایل‌ها: یه cron بیرونی (مثلا cron-job.org) هر ۱ دقیقه این آدرس رو صدا بزنه:
+#   https://<دامنه‌ی تو>/api/cron/cleanup?key=<WEBHOOK_SECRET>
+# پنل ادمین: https://<دامنه‌ی تو>/  (بدون رمز)
