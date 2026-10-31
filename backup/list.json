@@ -1,5 +1,35 @@
 [
   {
+    "id": 208,
+    "name": "Black Clover S2",
+    "title": "[@NivaroSub] Black Clover S2 - E5 [Fa]",
+    "caption": "[@NivaroSub] Black Clover S2 - E5 [Fa].zip",
+    "ext": "zip",
+    "category": "subtitle",
+    "ep": 5,
+    "season": 2,
+    "type": "document",
+    "files": 1,
+    "date": "2026-10-31 16:36:47",
+    "archive_link": "https://t.me/c/2737353383/1001",
+    "bot_link": "https://t.me/NivaroSubbot?start=p_208"
+  },
+  {
+    "id": 207,
+    "name": "Black Clover S2",
+    "title": "[@NivaroSub] Black Clover S2 - E05 [720p]",
+    "caption": "[@NivaroSub] Black Clover S2 - E05 [720p].mkv",
+    "ext": "mkv",
+    "category": "video",
+    "ep": 5,
+    "season": 2,
+    "type": "document",
+    "files": 1,
+    "date": "2026-10-31 16:34:07",
+    "archive_link": "https://t.me/c/2737353383/1000",
+    "bot_link": "https://t.me/NivaroSubbot?start=p_207"
+  },
+  {
     "id": 205,
     "name": "The Apothecary Diaries S3",
     "title": "[@NivaroSub] The Apothecary Diaries S03E05 [720p]",
